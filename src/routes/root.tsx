@@ -4,6 +4,7 @@ import App from "../App";
 import DetailsDish from "../pages/DetailsDish";
 import Error from "../pages/404";
 import AllDishes from "../pages/AllDishes";
+import About from "../pages/About";
 
 
 const router = createBrowserRouter([
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path :"/about",
-        element : <AllDishes />
+        element : <About />
       }
     ],
   },
