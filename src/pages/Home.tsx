@@ -9,7 +9,7 @@ function Home() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://dummyjson.com/recipes`)
+    fetch(`https://dummyjson.com/recipes?limit=9`)
       .then((response) => response.json())
       .then((data) => {
         setDishes(data.recipes);
