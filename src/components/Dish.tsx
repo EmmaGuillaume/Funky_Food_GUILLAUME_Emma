@@ -1,3 +1,5 @@
+import TagsDish from "./tagsDish";
+
 type TDishProps = {
   id: number;
   name: string;
@@ -96,13 +98,7 @@ const Dish = (props: TDishProps) => {
               <span>{props.servings} portions</span>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {props.tags.map((tag) => (
-              <span className="px-3 py-1 bg-gradient-to-r from-purple-200 to-pink-200 text-purple-800 rounded-full text-xs font-bold">
-                {tag}
-              </span>
-            ))}
-          </div>
+          <TagsDish tags={props.tags} />
           <div className="pt-4 border-t border-gray-200">
             <div className="flex justify-between items-center">
               <span className="text-sm font-bold text-gray-600">
