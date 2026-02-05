@@ -1,4 +1,4 @@
-import TagsDish from "./tagsDish";
+import TagsDish from "./TagsDish";
 
 type TDishProps = {
   id: number;
@@ -21,7 +21,7 @@ type TDishProps = {
 
 const Dish = (props: TDishProps) => {
   return (
-    <a className="group" href="/dish/1" data-discover="true">
+    <a className="group" href={`/dish/${props.id}`} data-discover="true">
       <div
         className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border-4 border-transparent hover:border-pink-400"
         style={{ transform: "rotate(-1deg)" }}
