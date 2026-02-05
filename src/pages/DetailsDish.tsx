@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Links, useParams } from "react-router-dom";
 import type { TDishProps } from "../components/Dish";
 import ListItem from "../components/details/ListItem";
 import TagDetails from "../components/details/Tag";
@@ -259,13 +259,13 @@ const DetailsDish = () => {
               <p className="text-3xl font-black text-white mb-4">
                 Prêt à cuisiner funky ? 🎉
               </p>
-              <a
+              <Link
                 className="inline-block bg-white text-purple-600 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition-all hover:scale-105 transform shadow-xl"
-                href="/"
+                to="/all-dishes"
                 data-discover="true"
               >
                 Découvrir Plus de Plats
-              </a>
+              </Link>
             </div>
           </div>
         </div>

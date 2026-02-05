@@ -3,13 +3,13 @@ import Menu from "../components/Menu";
 import Header from "../components/Header";
 import PhantomDish from "../components/PhantomDish";
 
-function Home() {
+function AllDishes() {
   const [dishes, setDishes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://dummyjson.com/recipes/?limit=9`)
+    fetch(`https://dummyjson.com/recipes`)
       .then((response) => response.json())
       .then((data) => {
         setDishes(data.recipes);
@@ -27,10 +27,10 @@ function Home() {
       <div className="bg-white px-4 py-12">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-5xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500">
-            Notre Menu Groovy
+            Liste de tous les plats
           </h2>
           <p className="text-center text-gray-600 mb-12 text-lg">
-            Des plats sélectionnés qui vont vous époustoufler ! 🌈✨
+            bientôt dans votre assiette ! 🌈✨
           </p>
 
           {isLoading ? (
@@ -48,4 +48,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default AllDishes;
