@@ -7,6 +7,7 @@ function AllDishes() {
   const [dishes, setDishes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOption, setSortOption] = useState<"asc" | "desc">("asc");
 
   useEffect(() => {
     setIsLoading(true);
@@ -21,7 +22,7 @@ function AllDishes() {
       });
   }, []);
 
-   useEffect(() => {
+  useEffect(() => {
     setIsLoading(true);
     fetch(`https://dummyjson.com/recipes/search?q=${searchTerm}`)
       .then((response) => response.json())
@@ -33,6 +34,19 @@ function AllDishes() {
         console.log(err.message);
       });
   }, [searchTerm]);
+
+   useEffect(() => {
+    setIsLoading(true);
+    fetch(`https://dummyjson.com/recipes?sortBy=name&order=${sortOption}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setDishes(data.recipes);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [sortOption]);
 
   return (
     <>
@@ -62,13 +76,15 @@ function AllDishes() {
               <div className="flex items-center gap-2">
                 <p>Trier par nom :</p>
                 <select
+                  onChange={(e) => {
+                    setSortOption(e.currentTarget.value as "asc" | "desc");
+                  }}
                   name="Trier"
                   id="Trier"
                   className="px-4 py-2 rounded-lg border border-gray-300"
                 >
-                  <option value="a">a</option>
-                  <option value="a">b</option>
-                  <option value="a">c</option>
+                  <option value="asc">Asc</option>
+                  <option value="desc">Desc</option>
                 </select>
               </div>
               <div className="flex items-center gap-2">
