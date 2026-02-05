@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import type { TDishProps } from "../components/Dish";
 import ListItem from "../components/details/ListItem";
 import TagDetails from "../components/details/Tag";
+import InfoCard from "../components/details/DishInfoCard";
 
 const DetailsDish = () => {
   const { id } = useParams();
@@ -27,7 +28,6 @@ const DetailsDish = () => {
       <div className="flex items-center justify-center h-screen">Loading </div>
     );
   }
-
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-400 to-orange-300">
@@ -94,93 +94,33 @@ const DetailsDish = () => {
       <div className="bg-white">
         <div className="max-w-6xl mx-auto px-4 py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            <div className="bg-gradient-to-br from-purple-200 to-purple-300 p-6 rounded-3xl text-center transform rotate-1 shadow-lg">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="lucide lucide-clock size-8 mx-auto mb-2 text-purple-700"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-              <div className="font-black text-2xl text-purple-900">
-                {dish.prepTimeMinutes}
-              </div>
-              <div className="text-sm text-purple-700 font-bold">
-                Préparation
-              </div>
-            </div>
-            <div className="bg-gradient-to-br from-pink-200 to-pink-300 p-6 rounded-3xl text-center transform -rotate-1 shadow-lg">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="lucide lucide-chef-hat size-8 mx-auto mb-2 text-pink-700"
-              >
-                <path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"></path>
-                <path d="M6 17h12"></path>
-              </svg>
-              <div className="font-black text-2xl text-pink-900">
-                {dish.cookTimeMinutes}
-              </div>
-              <div className="text-sm text-pink-700 font-bold">Cuisson</div>
-            </div>
-            <div className="bg-gradient-to-br from-orange-200 to-orange-300 p-6 rounded-3xl text-center transform rotate-1 shadow-lg">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="lucide lucide-users size-8 mx-auto mb-2 text-orange-700"
-              >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
-              <div className="font-black text-2xl text-orange-900">
-                {dish.servings}
-              </div>
-              <div className="text-sm text-orange-700 font-bold">Portions</div>
-            </div>
-            <div className="bg-gradient-to-br from-yellow-200 to-yellow-300 p-6 rounded-3xl text-center transform -rotate-1 shadow-lg">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="lucide lucide-flame size-8 mx-auto mb-2 text-yellow-700"
-              >
-                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
-              </svg>
-              <div className="font-black text-2xl text-yellow-900">
-                {dish.caloriesPerServing}
-              </div>
-              <div className="text-sm text-yellow-700 font-bold">Calories</div>
-            </div>
+            <InfoCard
+              color="purple"
+              linkSvg="http://www.w3.org/2000/svg"
+              number={dish.prepTimeMinutes}
+              text="Préparation"
+            />
+
+            <InfoCard
+              color="pink"
+              linkSvg="http://www.w3.org/2000/svg"
+              number={dish.cookTimeMinutes}
+              text="Cuisson"
+            />
+
+            <InfoCard
+              color="orange"
+              linkSvg="http://www.w3.org/2000/svg"
+              number={dish.servings}
+              text="Portions"
+            />
+
+            <InfoCard
+              color="yellow"
+              linkSvg="http://www.w3.org/2000/svg"
+              number={dish.caloriesPerServing}
+              text="Calories"
+            />
           </div>
           <div className="mb-12">
             <div className="flex flex-wrap gap-3 justify-center">
