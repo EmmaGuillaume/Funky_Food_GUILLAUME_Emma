@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link,  useParams } from "react-router-dom";
 import type { TDishProps } from "../components/Dish";
 import ListItem from "../components/details/ListItem";
 import TagDetails from "../components/details/Tag";
@@ -38,9 +38,9 @@ const DetailsDish = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-        <a
+        <Link
           className="absolute top-8 left-8 bg-white/90 backdrop-blur-sm text-purple-600 px-6 py-3 rounded-full font-bold hover:bg-yellow-300 transition-all flex items-center gap-2 shadow-xl hover:scale-105 transform"
-          href="/"
+          to="/"
           data-discover="true"
         >
           <svg
@@ -59,7 +59,7 @@ const DetailsDish = () => {
             <path d="M19 12H5"></path>
           </svg>
           Retour au Menu
-        </a>
+        </Link>
         <div className="absolute bottom-8 left-8 right-8">
           <h1 className="text-5xl md:text-7xl font-black text-white mb-4 drop-shadow-2xl">
             {dish.name}
