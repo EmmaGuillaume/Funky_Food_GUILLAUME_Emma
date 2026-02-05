@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link,  useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import type { TDishProps } from "../components/Dish";
 import ListItem from "../components/details/ListItem";
 import TagDetails from "../components/details/Tag";
@@ -25,7 +25,97 @@ const DetailsDish = () => {
 
   if (isLoading || !dish) {
     return (
-      <div className="flex items-center justify-center h-screen">Loading </div>
+      <div className="min-h-screen  bg-gray-400">
+        <div className="relative h-[500px] overflow-hidden">
+          <div className="w-full h-full object-cover bg-gray-300 animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+          <Link
+            className="absolute top-8 left-8 bg-white/90 backdrop-blur-sm text-gray-600 px-6 py-3 rounded-full font-bold hover:bg-gray-300 transition-all flex items-center gap-2 shadow-xl hover:scale-105 transform"
+            to="/"
+            data-discover="true"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="lucide lucide-arrow-left size-5"
+            >
+              <path d="m12 19-7-7 7-7"></path>
+              <path d="M19 12H5"></path>
+            </svg>
+            Retour au Menu
+          </Link>
+          <div className="absolute bottom-8 left-8 right-8">
+            <h1 className="text-5xl md:text-7xl font-black text-white mb-4 drop-shadow-2xl">
+              Delicious dish
+            </h1>
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="bg-gray-400 text-black px-4 py-2 rounded-full font-bold shadow-lg flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-star size-5 fill-black"
+                >
+                  <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+                5 (184 avis)
+              </div>
+              <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full font-bold">
+                Medium
+              </div>
+              <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full font-bold">
+                French
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white">
+          <div className="max-w-6xl mx-auto px-4 py-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+              <InfoCard
+                color="gray"
+                linkSvg="http://www.w3.org/2000/svg"
+                number={12}
+                text="Préparation"
+              />
+
+              <InfoCard
+                color="gray"
+                linkSvg="http://www.w3.org/2000/svg"
+                number={35}
+                text="Cuisson"
+              />
+
+              <InfoCard
+                color="gray"
+                linkSvg="http://www.w3.org/2000/svg"
+                number={8}
+                text="Portions"
+              />
+
+              <InfoCard
+                color="gray"
+                linkSvg="http://www.w3.org/2000/svg"
+                number={400}
+                text="Calories"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 
