@@ -8,6 +8,21 @@ function AllDishes() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState<"asc" | "desc">("asc");
+  const [tag, setTag] = useState("");
+
+  const [tagList, setTagList] = useState<string[]>([]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(`https://dummyjson.com/recipes/tags`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTagList(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -35,7 +50,7 @@ function AllDishes() {
       });
   }, [searchTerm]);
 
-   useEffect(() => {
+  useEffect(() => {
     setIsLoading(true);
     fetch(`https://dummyjson.com/recipes?sortBy=name&order=${sortOption}`)
       .then((response) => response.json())
@@ -47,6 +62,23 @@ function AllDishes() {
         console.log(err.message);
       });
   }, [sortOption]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const url = tag
+      ? `https://dummyjson.com/recipes/tag/${tag}`
+      : `https://dummyjson.com/recipes`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setDishes(data.recipes);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [tag]);
 
   return (
     <>
@@ -88,16 +120,25 @@ function AllDishes() {
                 </select>
               </div>
               <div className="flex items-center gap-2">
-                <p>Filter par catégorie :</p>
+                <p>Filter par tag :</p>
+
                 <select
+                  onChange={(e) => {
+                    setTag(e.currentTarget.value);
+                  }}
                   name="category"
                   id="category"
                   defaultValue={"b"}
                   className="px-4 py-2 rounded-lg border border-gray-300"
                 >
-                  <option value="a">a</option>
-                  <option value="a">b</option>
-                  <option value="a">c</option>
+                  <option key="all" value="">
+                    Tous les tags
+                  </option>
+                  {tagList?.map((tag) => (
+                    <option key={tag} value={tag}>
+                      {tag}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
